@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1586193281850.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "264876127",
+    "id" : "4B48C224",
+    "lastKnownWriteTime" : 1586199080,
+    "last_content_update" : 1586199080595,
+    "path" : "C:/Users/YI XUAN/Desktop/R studio homework/CH3--0401.Rmd",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "282,3",
+        "scrollLine" : "263"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
