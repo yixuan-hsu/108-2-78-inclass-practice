@@ -5,13 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "1726341872",
+    "hash" : "1548651550",
     "id" : "83A07114",
-    "lastKnownWriteTime" : 1586584839,
-    "last_content_update" : 1586584839,
+    "lastKnownWriteTime" : 1586589951,
+    "last_content_update" : 1586589951648,
     "path" : "C:/Users/YI XUAN/Desktop/GitHub/108-2-78-inclass-practice/CH3--0401.Rmd",
     "project_path" : "CH3--0401.Rmd",
     "properties" : {
+        "cursorPosition" : "30,20",
+        "scrollLine" : "23"
     },
     "read_only" : false,
     "read_only_alternatives" : [

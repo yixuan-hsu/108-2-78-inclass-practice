@@ -5,13 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "1022483541",
+    "hash" : "3880073795",
     "id" : "2C710C5E",
-    "lastKnownWriteTime" : 1586588973,
-    "last_content_update" : 1586588973,
+    "lastKnownWriteTime" : 1586598472,
+    "last_content_update" : 1586598472400,
     "path" : "C:/Users/YI XUAN/Desktop/GitHub/108-2-78-inclass-practice/R語言小筆記--CH3.Rmd",
     "project_path" : "R語言小筆記--CH3.Rmd",
     "properties" : {
+        "cursorPosition" : "326,0",
+        "scrollLine" : "308"
     },
     "read_only" : false,
     "read_only_alternatives" : [

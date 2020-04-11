@@ -5,11 +5,6 @@ date: "2020/3/25"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-
 ## class()
 ```{r}
 class(num)
@@ -85,6 +80,7 @@ class(studentId)
 as.character(studentId)
 
 studentId <- c(410773002, 410773015)
+class(studentId)
 studentId <- as.character(studentId)
 class(studentId)
 ```
@@ -133,7 +129,7 @@ ymd_hms("2020-03-04T06:56:29Z",
         tz="Europe/Lisbon")
 
 
-ymd_hms("2020-03-11T06:56:17Z")
+ymd_hms("2020-03-04T06:56:29Z")
 ```
 
 
@@ -147,3 +143,7 @@ studentTime <- c(
   ymd_hms("2020-03-11 16:11:53",tz="Asia/Taipei"))
 studentTime
 ```
+
+
+
+
