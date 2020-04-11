@@ -1,0 +1,177 @@
+---
+title: "R語言小筆記--CH3"
+author: "YI XUAN HSU"
+date: "2020/4/10"
+output: html_document
+---
+
+## 3.1 Packages
+
+*安裝：install.packages(c("googlesheets4","tidyverse"))
+
+*開啟使用：library(googlesheets4)
+
+
+## 3.2 Create an object with values
+
+*定義/設定 object：
+ObjectName <- object_value
+EX： a <- 2
+
+*有效的變量名(valid variable name)-規則：
+1. 可以存在：字母、數字、點(.)、底線+字元(_characters)
+2. 開頭只能是 '英文字母' 或 '點'(後面不接數字)
+3. `中文字僅能被反頓點包住`  #特殊名稱處理，`不是名稱的一部份
+
+*常見命名方式：
+snake: my_total_credits <- 15
+camel: myTotalCredits <- 15
+
+
+## 3.3 Calling an object
+
+*呼叫變數值：
+a <- 15  #變數設定
+b <- a  #呼叫a的值，用來設定變數b的值，相當於 b <- 15
+
+
+## 3.4 Atomic Vector
+
+*以c(...)將「相同類型」值以「逗點」分隔而形成的向量：
+EX: c(value1, value2, value3)    
+  # c括號裡面的元素不能有不同的type，若輸入成不同的type時，電腦會自動轉換成同樣的type儲存
+
+```{r}
+c("小明今年的歲數是", 25)
+  # 25從數值形式變成字串形式儲存，無法再進行加減乘除
+```
+
+1. 只有一個值的向量可以不寫c( )
+2. 向量的堆疊依然是向量
+3. value <- c()  #空向量
+4. value4 <- c(value4, value5)  #向量疊代(recursive vector concatenate)
+
+```{r}
+vNum1 <- -2
+vNum2 <- c(3,5)
+vNum3 <- c(vNum1,vNum2)
+vNum4 <- c(-2,3,5)
+vNum5 <- c(c(-2),c(3,5))
+vNum6 <- c()
+vNum7 <- c(7,0,1,2)
+```
+=> vNum3 = vNum4 = vNum5
+
+```{r}
+vNum7 <- c(vNum7, vNum2)  #只有向量vNum2有疊代，本變數(vNum7)不疊代 
+```
+
+*依其值的型態分成三類型
+1. Numeric  數值
+2. Character  字元
+3. Logical  邏輯
+ 
+
+# 3.4.1 Numeric
+
+num1 <- 5  #非整數，5會被電腦記成5.0000
+num2 <- 5L  #整數，5L才會被電腦當成整數5
+
+num1Vector <- c(5,6,7)
+num2Vector <- c(5L,6L,7L)
+
+
+# 3.4.2 Character/String (vector)
+
+1. 定義object value時，必須要用成對的"雙引號"或'單引號'，把每個字串括起來
+2. 可以使用class( )查詢上述物件類型(Numeric or Character or Logical)
+3. 若值的內容有包含"，這時可改用成對的'定義值
+4. 小心字串一對引號（“…”）中間不可隨便斷行，它會改變字串的內容
+
+```{r}
+char1 <- 7012
+char2 <- "7012"
+char3 <- c("你好",'How are you?')
+
+class(char1)
+class(char2)
+class(char3)
+```
+
+```{r}
+dialogue <- c(' 小明說："明天不用上課。" ', 
+              ' 小花說："真的嗎？" ')    #也可用反頓點包裹雙引號
+
+cat(dialogue, sep="\n")  #顯示結果小視窗
+```
+
+```{r}
+library(googlesheets4)
+
+`出席狀況表單網址` <- "https://docs.google.com......"
+
+ss <- as_sheets_id(`出席狀況表單網址`)
+homework_sheet <- sheets_read(ss,sheet=1)
+```
+
+
+# 3.4.3 Logical
+
+1. 為「真」： T或TRUE (要全大寫)
+2. 為「否」： F或FALSE (要全大寫)
+3. 邏輯值遇到數學運算時T會被當成1，而F會被當成0
+
+```{r}
+logi1 <- c(T,TRUE,F,FALSE,FALSE)
+
+sum(logi1)  #加總向量內的所有元素值
+```
+
+
+# 3.4.4 typeof()
+
+*顯示atomic vector元素的基本認定型態，它代表電腦記憶體在儲存時真正看待的型態    #檢視是什麼類型的資料
+
+```{r}
+num <- c(1.5, 2, 3)
+int <- c(1L, 3L, -2L)
+char <- c("1.5","2","3")
+logi <- c(T,T,F)
+
+typeof(num)
+typeof(int)  #整數
+typeof(char)
+typeof(logi)
+```
+
+
+# 3.4.5 class()
+
+*依資料的螢幕顯示型態及能對它進行的操作所做的分類
+
+```{r}
+class(num)
+class(int)
+class(char)
+class(logi)
+```
+
+
+## 3.5 Atomic Vector Extended
+
+*以Atomic types為基礎，因應資料需求而延伸的資料儲存類別
+
+*介紹兩個數字串向量而延伸的兩個類別：
+1. factor: 類別資料  # factor(字串向量)
+2. POSIXct/POSIXt: 時間資料  # ymd_hms(字串向量)
+
+
+# 3.5.1 Factor
+
+*當資料值只有固定幾類反覆出現時，此類資料稱之為類別資料（factor or categorical data）    #分析資料的類別，並用編號分類儲存
+
+
+
+
+
+
