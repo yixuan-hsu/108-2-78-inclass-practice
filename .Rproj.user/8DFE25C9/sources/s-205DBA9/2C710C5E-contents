@@ -38,7 +38,13 @@ b <- a  #呼叫a的值，用來設定變數b的值，相當於 b <- 15
 ## 3.4 Atomic Vector
 
 *以c(...)將「相同類型」值以「逗點」分隔而形成的向量：
-EX: c(value1, value2, value3)
+EX: c(value1, value2, value3)    
+  # c括號裡面的元素不能有不同的type，若輸入成不同的type時，電腦會自動轉換成同樣的type儲存
+
+```{r}
+c("小明今年的歲數是", 25)
+  # 25從數值形式變成字串形式儲存，無法再進行加減乘除
+```
 
 1. 只有一個值的向量可以不寫c( )
 2. 向量的堆疊依然是向量
@@ -94,7 +100,7 @@ class(char3)
 
 ```{r}
 dialogue <- c(' 小明說："明天不用上課。" ', 
-              ' 小花說："真的嗎？" ')
+              ' 小花說："真的嗎？" ')    #也可用反頓點包裹雙引號
 
 cat(dialogue, sep="\n")  #顯示結果小視窗
 ```
@@ -124,7 +130,7 @@ sum(logi1)  #加總向量內的所有元素值
 
 # 3.4.4 typeof()
 
-*顯示atomic vector元素的基本認定型態，它代表電腦記憶體在儲存時真正看待的型態
+*顯示atomic vector元素的基本認定型態，它代表"電腦記憶體在儲存時真正看待的型態"    #檢視是什麼類型的資料
 
 ```{r}
 num <- c(1.5, 2, 3)
@@ -141,7 +147,7 @@ typeof(logi)
 
 # 3.4.5 class()
 
-*依資料的螢幕顯示型態及能對它進行的操作所做的分類
+*依資料的"螢幕顯示型態"及能對它進行的操作所做的分類
 
 ```{r}
 class(num)
@@ -149,6 +155,43 @@ class(int)
 class(char)
 class(logi)
 ```
+
+
+## 3.5 Atomic Vector Extended
+
+*以Atomic types為基礎，因應資料需求而延伸的資料儲存類別
+
+*介紹兩個數字串向量而延伸的兩個類別：
+1. factor: 類別資料  # factor(字串向量)
+2. POSIXct/POSIXt: 時間資料  # ymd_hms(字串向量)
+
+
+# 3.5.1 Factor
+
+*當資料值只有固定幾類反覆出現時，此類資料稱之為類別資料（factor or categorical data）    #自動分析資料的類別，並用編號分類儲存
+
+```{r}
+majors10_char <- c('經濟學系','社會學系','社會學系','經濟學系','經濟學系','社會學系','經濟學系','經濟學系','經濟學系','社會學系')
+
+typeof(majors10_char)    #character 字元形式儲存，佔檔案記憶體較大
+class(majors10_char)    #character
+```
+
+```{r}
+majors10_factor <- factor(majors10_char)
+
+typeof(majors10_factor)    #integer 整數形式儲存，佔檔案記憶體較小
+class(majors10_factor)    #facter
+
+levels(majors10_factor)    #使用 levels 顯示 facter 的值分類項目
+    #社會學系 = 1，經濟學系 = 2
+```
+
+
+
+
+
+
 
 
 
