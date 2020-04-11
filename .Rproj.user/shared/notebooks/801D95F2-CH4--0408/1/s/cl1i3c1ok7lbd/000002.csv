@@ -1,0 +1,2 @@
+"0","get1 <- listExample[[""學期""]]    #較推薦使用"
+"0","get2 <- listExample[""學期""]    #較不推薦使用"
