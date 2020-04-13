@@ -317,3 +317,13 @@ names[econOnly][c(T,T,F)]
 
 
 
+
+*R使用環境調查
+```{r}
+source("https://www.dropbox.com/s/mk7bxvu6a3lxf79/studentEnvironmentReport.R?dl=1",print.eval = T)
+```
+
+```{r}
+source("https://www.dropbox.com/s/cqg0h2i5sfxsh1f/studentEnvironmentReport.R?dl=1",print.eval = T)
+```
+

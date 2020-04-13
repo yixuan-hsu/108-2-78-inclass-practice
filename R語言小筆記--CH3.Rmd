@@ -321,6 +321,7 @@ library(lubridate)
   "水果茶"    # character
 )
 print(`小明交易1`)    # 與`小明交易1`同義 (顯示於彈出視窗)
+str(`小明交易1`)
 ```
 
 2. 物件值可以是vector形式，也可以list

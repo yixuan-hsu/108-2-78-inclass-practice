@@ -5,20 +5,20 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
+    "hash" : "1293893435",
     "id" : "4367DAFD",
-    "lastKnownWriteTime" : 1586638374,
-    "last_content_update" : 1586638526649,
+    "lastKnownWriteTime" : 1586779981,
+    "last_content_update" : 1586784567761,
     "path" : "C:/Users/YI XUAN/Desktop/GitHub/108-2-78-inclass-practice/CH4--0408.Rmd",
     "project_path" : "CH4--0408.Rmd",
     "properties" : {
-        "cursorPosition" : "315,0",
-        "scrollLine" : "293"
+        "cursorPosition" : "174,3",
+        "scrollLine" : "166"
     },
     "read_only" : false,
     "read_only_alternatives" : [
     ],
-    "relative_order" : 2,
+    "relative_order" : 6,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_markdown"
