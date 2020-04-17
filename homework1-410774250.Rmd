@@ -101,7 +101,7 @@ List of 2
 
 ```{r ans31}
 course <- list(
-  approve <- TRUE,
+  approve= TRUE,
   course_info=list(
     coursename="會計學",
     type="必",
@@ -129,7 +129,7 @@ course
 
 ```{r ans32}
 courseUpdate <- list(
-  approve <- TRUE,
+  approve= TRUE,
   course_info=list(
     coursename="會計學",
     type="必",
@@ -258,6 +258,8 @@ source("https://www.dropbox.com/s/xtge2ghfb7dhple/108-2-hw1-4.R?dl=1")
   * 找出有錯誤的行，直接把它更正，更正時不要隨意斷句徒增新行。
 
 ```{r ans5c, eval=F}
+library(lubridate)
+
 yy <- 2020
 mm <- "Mar."
 dd <- 15
@@ -273,7 +275,5 @@ event_list <- list(
   )
 str(event_list)
 ```
-
-
 
 
