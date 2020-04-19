@@ -77,9 +77,10 @@ vNum7 <- c(vNum7, vNum2)  #只有向量vNum2有疊代，本變數(vNum7)不疊�
 num1 <- 5  #非整數，5會被電腦記成5.0000
 num2 <- 5L  #整數，5L才會被電腦當成整數5
 
-num1Vector <- c(5,6,7)
-num2Vector <- c(5L,6L,7L)
-
+```{r}
+num1Vector <- c(5,6,7)    # num 形式
+num2Vector <- c(5L,6L,7L)    #int 形式
+```
 
 # 3.4.2 Character/String (vector)
 
