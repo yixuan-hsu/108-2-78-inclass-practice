@@ -68,7 +68,7 @@ vNum7 <- c(vNum7, vNum2)  #只有向量vNum2有疊代，本變數(vNum7)不疊�
 
 *依其值的型態分成三類型
 1. Numeric  數值
-2. Character  字元
+2. Character  字串
 3. Logical  邏輯
  
 
@@ -139,8 +139,8 @@ int <- c(1L, 3L, -2L)
 char <- c("1.5","2","3")
 logi <- c(T,T,F)
 
-typeof(num)
-typeof(int)  #整數
+typeof(num)    #double
+typeof(int)    #integer 整數
 typeof(char)
 typeof(logi)
 ```
@@ -151,7 +151,7 @@ typeof(logi)
 *依資料的"螢幕顯示型態"及能對它進行的操作所做的分類
 
 ```{r}
-class(num)
+class(num)    #numeric
 class(int)
 class(char)
 class(logi)
@@ -186,6 +186,9 @@ class(majors10_factor)    #facter
 
 levels(majors10_factor)    #使用 levels 顯示 facter 的值分類項目
     #社會學系 = 1，經濟學系 = 2  (對照表，依各台電腦跑出的結果為主)
+
+as.integer(majors10_factor)
+    #將物件轉換成integer的形式，表示以對照表的編碼進行改寫
 ```
 
 ```{r}
@@ -232,6 +235,8 @@ class(studentId)
 
 *來自相同時區、相同輸入方式的時間文字字串，可以直接套入相同函數轉成Date/Time類別
 ```{r}
+library(lubridate)
+
 tpeTime <- c("2020-03-18 13:52:40",
              "2020-03-11 03:12:40")
 
@@ -255,6 +260,7 @@ ymd_hms("2020-03-11T06:56:17Z")    #後面不要再指定tz=...
 
 ```{r}
 library(lubridate)
+
 tpeTime <- ymd_hms("2020-03-18 13:52:40",
                    tz="Asia/Taipei")
 

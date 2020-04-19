@@ -1,0 +1,7 @@
+"0","tpeTime <- c(""2020-03-18 13:52:40"","
+"0","             ""2020-03-11 03:12:40"")"
+"0",""
+"0","tpeTime <- ymd_hms(tpeTime,     #呼叫tpeTime向量值"
+"0","                   tz=""Asia/Taipei"")"
+"2","Error in ymd_hms(tpeTime, tz = ""Asia/Taipei"") : 沒有這個函數 ""ymd_hms""
+"

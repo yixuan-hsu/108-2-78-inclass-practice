@@ -1,0 +1,5 @@
+"0","tpeTime <- ymd_hms(tpeTime,     #呼叫tpeTime向量值
+                   tz=""Asia/Taipei"")
+"
+"2","Error in ymd_hms(tpeTime, tz = ""Asia/Taipei"") : 沒有這個函數 ""ymd_hms""
+"

@@ -130,7 +130,7 @@ str(newTaipeiCityVaccine[["result"]] , max.level = 1)
 ```
 
 
-# 4.1.2 選兩個元素-->可以用[ ]
+# 4.1.2 選多個元素-->可以用[ ]
 
 *用位置選--> [c(...)]
 
