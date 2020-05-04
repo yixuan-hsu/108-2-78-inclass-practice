@@ -1,0 +1,2 @@
+"0","levels_new <- c(levels_ages[c(12,13,1,8,2:7,9:11)])"
+"0","levels(list_victimAges_female$`年齡層`) <- levels_new"

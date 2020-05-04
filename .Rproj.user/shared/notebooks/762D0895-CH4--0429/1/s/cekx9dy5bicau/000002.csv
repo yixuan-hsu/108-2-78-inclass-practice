@@ -1,0 +1,6 @@
+"0","exchangeRate_after98 <-"
+"0","  list("
+"0","    `期間`=exchangeRate$`期間`[pick_after98_01],"
+"0","    `幣別`=exchangeRate$`幣別`[pick_after98_01],"
+"0","    `匯率`=exchangeRate$`匯率`[pick_after98_01]"
+"0","  )"

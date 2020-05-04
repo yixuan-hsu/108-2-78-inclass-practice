@@ -1,0 +1,8 @@
+"0","source(""https://www.dropbox.com/s/16h6ggua6qtydci/exchangeRate.R?dl=1"")"
+"2","Parsed with column specification:
+cols(
+  ´Á¶¡ = [34mcol_date(format = """")[39m,
+  ¹ô§O = [31mcol_character()[39m,
+  ¶×²v = [32mcol_double()[39m
+)
+"
