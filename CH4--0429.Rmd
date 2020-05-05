@@ -358,8 +358,94 @@ sum(list_victimAges_female$`數目`[pick_above30], na.rm = T)
 
 # 4.4.2 相等，屬於
 
+==: 等於    #兩個等號
+!=: 不等於
+==與!=可使用於字串
+
+EX：example裡誰血型B型
+```{r}
+print(example[c("name","bloodType")])
+
+pick_bloodB <- example$bloodType == "B"
+example$name[pick_bloodB]
+```
+
+```{r}
+sequenceNums <- c(11, 6, 8, 11, 12, 11, 3, 7, 10, 8)
+
+pick_evens <- (sequenceNums %% 2) == 0    #關聯性分析通常為同一class
+  #創造可留下偶數的「要/不要」向量pick_evens
+
+sequenceNums[pick_evens]
+```
+
+還有一個常用的關聯運算：
+
+%in%: 屬於
+
+左邊元素「一一」檢視是不是屬於右邊元素*集合*
+
+```{r}
+x <- c(1,5,8)
+y <- c(5,8)
+
+# x裡的元素值是不是屬於y集合
+x %in% y    #呈現的結果為邏輯向量 T or F
+```
+
+EX：example裡誰來自大台北
+```{r}
+print(example[c("name","residence")])
+
+set_TaipeiMetro <- c("Taipei","New Taipei")
+pick_fromTaipeiMetro <- example$residence %in% set_TaipeiMetro
+ #當有符合多種可能的狀況且狀況相等，使用'集合' %in% "屬於"的方式運算
+
+example$name[pick_fromTaipeiMetro]
+```
 
 
+EX：創造 可選出來自法商學院的「要/不要」向量，pick_lawBusiness
+```{r}
+source("https://www.dropbox.com/s/qsrw069n94k61lj/transcript100to103_list.R?dl=1")
+```
+
+```{r}
+str(transcript100to103)
+
+levels(factor(transcript100to103$`學院`))
+#先確認資料使用的各院對應名稱是什麼
+
+#也可使用unique，使重複出現的元素值呈現一次就好，結果都為獨一無二的
+unique(transcript100to103$`學院`)
+
+set_LawBusiness <- c("法學院","商學院")
+
+pick_LawBusiness <- transcript100to103$`學院` %in% set_LawBusiness
+```
+
+
+# 4.4.3 Negation(否定用法)
+
+在「要/不要」向量前加上!會成為否定句的「要/不要」向量，元素裡的TRUE會轉成FALSE, FALSE則轉成TRUE
+
+"!" 通常都為 Negation 的用法
+
+```{r}
+pick_not_fromTaipeiMetro <- ! pick_fromTaipeiMetro
+
+# 或
+pick_not_fromTaipeiMetro <- 
+  !(example$residence %in% set_TaipeiMetro)    
+   # (..) 裡面會先運算完才做外面!的處理
+```
+
+```{r}
+print(example[c("name","residence")])
+
+example$name[pick_fromTaipeiMetro]
+example$name[pick_not_fromTaipeiMetro]
+```
 
 
 
