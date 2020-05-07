@@ -1,0 +1,12 @@
+"0","CDC_chatbox <- readr::read_csv(""http://od.cdc.gov.tw/pr/CDC_chatbox.csv"")"
+"2","Parsed with column specification:
+cols(
+  No = [32mcol_double()[39m,
+  Disease = [31mcol_character()[39m,
+  Question = [31mcol_character()[39m,
+  Answer1 = [31mcol_character()[39m,
+  Answer2 = [31mcol_character()[39m,
+  Answer3 = [31mcol_character()[39m,
+  Answer4 = [31mcol_character()[39m
+)
+"
