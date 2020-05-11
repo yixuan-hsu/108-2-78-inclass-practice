@@ -1,0 +1,4 @@
+"0","pick_above170 <- example$height >= 170
+"
+"2","Error in example$height : 'closure' 類型的物件無法具有子集合
+"
