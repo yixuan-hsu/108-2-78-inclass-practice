@@ -1,0 +1,37 @@
+"0","install.packages(""htmlwidgets"")"
+"2","WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+"
+"2","Installing package into ¡¥C:/Users/YI XUAN/Documents/R/win-library/3.6¡¦
+(as ¡¥lib¡¦ is unspecified)
+"
+"2","å˜—è©¦ URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/htmlwidgets_1.5.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 809855 bytes (790 KB)
+"
+"2","downloaded 790 KB
+
+"
+"1","package â€˜htmlwidgetsâ€™ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Users\YI XUAN\AppData\Local\Temp\Rtmpa02hiq\downloaded_packages"
+"1",""
+"1","
+"
+"0","library(htmlwidgets)"
+"2","Registered S3 methods overwritten by 'htmltools':
+  method               from         
+  print.html           tools:rstudio
+  print.shiny.tag      tools:rstudio
+  print.shiny.tag.list tools:rstudio
+"
+"2","Registered S3 method overwritten by 'htmlwidgets':
+  method           from         
+  print.htmlwidget tools:rstudio
+"

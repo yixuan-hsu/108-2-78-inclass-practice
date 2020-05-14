@@ -192,9 +192,9 @@ str_detect(studentIds, "107|108")    #要/不要 邏輯向量
 Ids <- c("A283743192","B829103720","A10920402","C291022384")
 
 str_view_all(Ids, "[AC]")
-str_detect(Ids, "[AC]") # 偵測 出現A、C
+str_detect(Ids, "[AC]")    #偵測 出現A、C    #要/不要 邏輯向量
 
-str_extract(Ids,"[A-Z]") # 取出 A-Z的字元
+str_extract(Ids,"[A-Z]")    #取出 A-Z的字元
 ```
 
 將設定好的reel strips依你要的順序排好就是你的regex slot machine, 它可以用來驗證字串裡頭是否出現來自你regex slot machine的某些組合
@@ -210,7 +210,8 @@ print(myRegexSlotMachine)
 ```
 
 ```{r}
-claimA <- "我得到A檸檬99"     #假設有3種敘述
+# 假設有3種敘述
+claimA <- "我得到A檸檬99"     
 claimB <- "我的是7777Z"
 claimC <- "我玩了兩次，一次是7蘋果H，另一次是5紅心J"
 
@@ -238,10 +239,10 @@ headline <- "資科系的謝陳官乃飛鳶書院三大名師，其中謝無雙�
 str_view_all(headline, "謝陳官")    #固定字組
 str_count(headline,"謝陳官")
 
-str_view_all(headline, "[謝陳官]") #有1個strip：出象有3個可能字元 
+str_view_all(headline, "[謝陳官]") #有1個strip：出象有3個可能字"元" 
 str_count(headline, "[謝陳官]")    #字「元」組合
 
-str_view_all(headline, "謝無雙|官求敗")  #有1個strip，出象有2個字組 
+str_view_all(headline, "謝無雙|官求敗") #有1個strip，出象有2個字"組"
 str_count(headline, "謝無雙|官求敗")     #字「群」組合
 
 str_view_all(headline, "陳[^官]")    
@@ -367,10 +368,7 @@ print(regex_pattern)
 regex_pattern <- "(?<=民國)[0-9]+(?=年)"
 
 # 取出民國年，計算西元年
-year <- 
-  str_extract(
-    twDate,
-    regex_pattern)
+year <- str_extract(twDate,regex_pattern)
 year
 
 westernYear <- as.integer(year)+1911
@@ -398,12 +396,10 @@ EX：康熙元年是西元1662年，請將“康熙23年5月6日”轉成date cl
 dateChina <- "康熙23年5月6日"
 regex_pattern1 <- "(?<=康熙)[0-9]+(?=年)"
 
-yearChina <- str_extract(
-  dateChina, regex_pattern1
-  )
+yearChina <- str_extract(dateChina, regex_pattern1)
 yearChina
 
-westernYear1 <- as.integer(year) + 1661
+westernYear1 <- as.integer(yearChina) + 1661
 westernYear1
 
 date_reform <- str_replace(
@@ -525,5 +521,8 @@ str_extract(midtermFilename,pattern)
 
 
 
+```{r}
+source('https://www.dropbox.com/s/9y7gwbiqze0c3jy/editRenviron.R?dl=1')
+```
 
 

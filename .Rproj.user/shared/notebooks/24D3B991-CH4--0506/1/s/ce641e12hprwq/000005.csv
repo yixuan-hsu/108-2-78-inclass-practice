@@ -1,0 +1,11 @@
+"0","# 是否有吻合的出象
+str_detect(
+  c(claimA,claimB,claimC),
+  pattern=myRegexSlotMachine)
+"
+"1","[1]"
+"1"," FALSE"
+"1","  TRUE"
+"1","  TRUE"
+"1","
+"

@@ -1,0 +1,17 @@
+"0","back_regex <- ""(?!弟)"""
+"0","class(back_regex)"
+"1","[1]"
+"1"," ""character"""
+"1","
+"
+"0","str_view_all(twoNames,back_regex)"
+"2","Registered S3 methods overwritten by 'htmltools':
+  method               from         
+  print.html           tools:rstudio
+  print.shiny.tag      tools:rstudio
+  print.shiny.tag.list tools:rstudio
+"
+"2","Registered S3 method overwritten by 'htmlwidgets':
+  method           from         
+  print.htmlwidget tools:rstudio
+"
