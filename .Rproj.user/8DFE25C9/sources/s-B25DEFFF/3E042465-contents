@@ -1,0 +1,419 @@
+---
+title: "CH4--0513"
+author: "YI XUAN HSU"
+date: "2020/5/18"
+output: html_document
+---
+
+## 4.7 On factor class
+
+內定levels順序是根據電腦內字元排序(collating sequence) 依辭典序列方式決定排序，很多時候沒有意義
+
+```{r}
+char1 <- c("Wild","Apple","Donald","May","Avocada") 
+factor1 <- factor(char1)
+levels(factor1)
+```
+
+```{r}
+library(stringr)
+char2 <- c("蔡英文","習近平","Donald Trump","蔡頭") 
+
+factor2 <- factor(char2)
+levels(factor2)
+
+sort(str_sub(char2,1,1)    #利用str_sub 取出第1位到第1位(1,1)的字元
+     )                     #再利用sort 排序(從小排到大)
+
+sort(str_sub(char2,2,2)    #利用str_sub 取出第2位到第2位(2,2)的字元
+     )                     #再利用sort 排序(從小排到大)
+```
+
+查詢你的collating sequence設定：
+```{r}
+Sys.getlocale("LC_COLLATE")
+```
+
+由於不同電腦、不同作業系統的collating sequence不同， 如果levels順序在你的分析是重要的，一定要在設定factor時自行設定好
+
+
+EX：嚴重特殊傳染性肺炎
+```{r}
+jsonlite::fromJSON("https://od.cdc.gov.tw/eic/Day_Confirmation_Age_County_Gender_19CoV.json") -> covid19
+```
+
+```{r}
+# 不可排序類別：性別、縣市、是否境外移入
+covid19$`縣市` <- factor(covid19$`縣市`)  #從原本字串class轉成factor
+covid19$`性別` <- factor(covid19$`性別`)
+covid19$`是否為境外移入`<- factor(covid19$`是否為境外移入`)
+
+levels(covid19$`縣市`)
+levels(covid19$`性別`)
+levels(covid19$`是否為境外移入`)
+```
+
+```{r}
+# 可排序類別資料：年齡層
+covid19$`年齡層` <- factor(covid19$`年齡層`,
+                        ordered=TRUE         #可排序
+                        )
+
+covid19$`年齡層`
+levels(covid19$`年齡層`)     #電腦排序有誤，需自行更改
+```
+
+
+# 4.7.1 levels重新排列
+
+**重新再定義factor一次
+
+factor(*目前的factor向量*, levels=自訂排序)
+levels放第二格時， levels= 可省略。
+
+目前的類別向量的可不可排序性質依然會保留，不用特意去設ordered=T/F
+
+使用函數時，若argument input的位置就是原help說明裡定義該argument位置 時，「argument_name =」部份可以不寫
+
+**手動輸入排法：由女男改男女**
+```{r}
+levels(covid19$`性別`)
+covid19$`性別` <- factor(covid19$`性別`, c("男","女"))
+
+levels(covid19$`性別`)
+```
+
+**依與levels相關的其他數據排列：**
+covid19$`縣市`的levels依其人口由大排到小。如“新北市”人口最多，它就要排levels的第一個，依此類推
+
+演算思維：
+1. 下載台灣各縣市人口資料：
+```{r}
+jsonlite::fromJSON(
+  "https://www.dropbox.com/s/jckqryeh5zeat5w/regionPopulation.json?dl=1"
+) -> population
+unlist(population) -> population
+```
+
+資料科學心法一：拿到新的資料先檢視「內容」、「class/type」
+```{r}
+print(population)
+class(population)    #判斷出是named integer vector
+names(population)    #元素名稱是台灣各縣市 (為數字(integer)命名)
+```
+
+2. 留下levels中有的popluation元素
+```{r}
+levels(covid19$`縣市`)    #是名稱字串向量
+
+# 由於population元素值有names，可以用`[名稱字串向量]`取出所要的
+levels(covid19$`縣市`) -> levelsInData
+
+population[levelsInData] -> population
+population
+```
+
+3. 將population (class integer)由*大排到小*(sort(x, *decreasing=T*) 可將x numeric vector 由大排到小)     #不然原本是由小到大
+```{r}
+population <- sort(population, decreasing=T)
+population
+```
+
+4. 排完後population第一個元素值最大，它的名稱即是人口最多的縣市，第二元素值次大，它名稱是人口第二多縣市，依此類推。我們要的是population排完後的元素名稱
+```{r}
+newLevels <- names(population)    #縣市名是命名過後的名稱
+newLevels
+```
+
+5. 重設levels排序
+```{r}
+covid19$`縣市` <- factor(
+  covid19$`縣市`, levels=newLevels     #使用自訂排序
+  )
+
+levels(covid19$`縣市`)
+```
+
+
+EX：將covid19$縣市 依縣市目前個案數目由大排到小。（hint: 可使用table()來得到個案數統計, 它會自然產生named integer vector）
+```{r}
+covid_num <- table(covid19$`縣市`)
+covid_num
+
+covid_num <- sort(covid_num, decreasing=T)
+covid_num
+
+new_covid19_Levels <- names(covid_num)
+new_covid19_Levels
+
+covid19$`縣市` <- factor(covid19$`縣市`, levels=new_covid19_Levels)
+levels(covid19$`縣市`)
+```
+
+
+**年齡應該用年齡區間起始數字排序**
+```{r}
+levels(covid19$`年齡層`)    #電腦排序有誤，需自行更改
+```
+
+1. 取出levels中各年齡層的起始數字，存在startingAges
+```{r}
+level_names <- levels(covid19$`年齡層`)
+level_names
+
+startingAges <- stringr::str_extract(     #使用*萃取*指令
+  level_names,
+  "^[0-9]+"    # regex：^(表開頭)的一串數字
+)
+startingAges  # vector (character) class
+              #依數據重排類別小技巧，善用named vector(numeric class)
+              #因此需要更改 class
+```
+
+2. 將startingAges變成named integer vector
+```{r}
+# 要numerical class排的才一定對
+startingAges <- as.integer(startingAges)
+startingAges
+
+names(startingAges) <- level_names   # names() <- *表示為這物件取名
+startingAges     #依據level_names的結果來替startingAges 取名完成
+```
+
+3. 將startingAges從小排到大
+```{r}
+sort(startingAges) -> startingAges
+startingAges     # integer class
+```
+
+4. 重設levels排序
+```{r}
+covid19$`年齡層` <- factor(
+  covid19$`年齡層`, 
+  level=names(startingAges)    #只取出startingAges 所被命名的名稱
+  )
+levels(covid19$`年齡層`)
+```
+
+
+# 4.7.2 levels改名
+
+**levels(x) <-  **
+
+在R裡，若你看到函數f說明在Usage同時寫上f() <-的用法時，它表示 此函數除了一般用來產生結果以外，也可以用來設定結果
+
+levels: 一般用來*顯示*類別
+levels <- : 用來*設定*類別 (命名)
+
+其他常用到設定用法的還有names(),attr()等等
+
+```{r}
+factor1 <- factor(
+  c("A","A","C","A","D","F","D","D")
+)
+factor1
+
+levels(factor1) <- c("優","佳","尚可","普")  #可替一整個*類別*改名稱
+
+factor1
+```
+
+也可改levels其中幾個利用元素取代概念
+```{r}
+levels(factor1)[[1]] <- "Excellent"
+levels(factor1)[c(3,4)] <- c("C","D")
+factor1
+```
+
+由於factor內容的呈現是依循levels對照表走
+*所以levels內容一變，factor的內容呈現也變了*
+
+
+# 4.7.3 levels整併
+
+*EX1 :原本levels是台灣各縣市，你想改成北/中/南/東部四類
+```{r}
+factor_taiwan <- factor(c("新北市","台北市","台中市","彰化市","基隆市","苗栗縣","苗栗縣"))
+factor_taiwan
+```
+
+```{r}
+levels(factor_taiwan) <- c(     # level() <-  可替一整個*類別*改名稱
+  "中部","北部","北部","中部","北部","中部")
+factor_taiwan
+```
+
+*由covid19$縣市建立一個地區變數，值為北部、中部、南部、東部，其中：
+
+北部：“宜蘭縣、基隆市、台/臺北市、新北市、桃園市、新竹市、新竹縣”
+中部：“苗栗縣、台/臺中市、彰化縣、南投縣、雲林縣”
+南部：“嘉義市、嘉義縣、台/臺南縣、台/臺南市、高雄市、屏東縣、澎湖縣”
+東部：“花蓮縣、台東縣”
+
+```{r}
+covid19$`地區` <- covid19$`縣市`
+levels(covid19$`地區`)
+currentLevels <- levels(covid19$`地區`)
+currentLevels
+
+# 整併
+north_regex <- "宜蘭縣|基隆市|[台臺]北市|新北市|桃園市|新竹市|新竹縣"
+middle_regex <- "苗栗縣|[台臺]中市|彰化縣|南投縣|雲林縣"
+south_regex <-
+  "嘉義市|嘉義縣|[台臺]南[縣市]|高雄市|屏東縣|澎湖縣"
+east_regex <- "花蓮縣|台東縣"
+
+currentLevels <- str_replace(currentLevels, 
+            north_regex, "北部")
+currentLevels <- str_replace(currentLevels, 
+            middle_regex, "中部")
+currentLevels <- str_replace(currentLevels, 
+            south_regex, "南部")
+newLevels <- str_replace(currentLevels, 
+            east_regex, "東部")
+newLevels
+
+levels(covid19$`地區`) <- newLevels
+covid19$`地區`
+```
+
+
+*EX2 ：原本年齡層levels是每5歲一個間距，你想改成10歲一個間距
+```{r}
+factor_age <- factor(c("0-4歲","5-9歲","10歲以上","0-4歲","5-9歲","5-9歲","10歲以上"))
+factor_age
+```
+
+```{r}
+levels(factor_age) <- c("0-9歲","10歲以上","0-9歲")
+factor_age
+```
+
+*將covid19$年齡層，由5歲間距成10歲間距，使改完後的levels為4 < 5-14 < 15-24 < …< 55-64 < 65+
+
+```{r}
+levels(covid19$`年齡層`)
+
+# 創造10歲間距的所有可能
+start <- seq(5, 55, by=10) #序列sequence：seq(start,end,by=間隔多少)
+                           #由5到55，每個值差10的數值向量
+end <- seq(14, 64, by=10)
+
+start
+end
+
+middle_age_Levels <- rep(    # repeat：rep(向量內容,each=要重複幾次)
+  paste0(start,"-",end),
+  each=2)     #每個新間距要2個
+              #即"5-9","10-14" (2個)都要表示成為"5-14"
+middle_age_Levels
+
+new_age_Levels <- c("4", middle_age_Levels, "65+", "65+")
+new_age_Levels
+
+levels(covid19$`年齡層`) <- new_age_Levels
+covid19$`年齡層`
+```
+
+
+# 4.7.4 levels擴充
+
+levels <-右邊值的部份包含原本的外，還有想新增的類別
+
+```{r}
+factor2 <- 
+  factor(c("好","好","普通","普通", "好"))
+levels(factor2)
+```
+
+加一筆新資料“差”（之前沒有這類）
+```{r}
+factor2[[6]] <- "差"
+factor2 # 元素6變NA
+```
+
+先擴大levels, 再加新資料
+```{r}
+factor2 <- 
+  factor(c("好","好","普通","普通", "好"))
+levels(factor2)
+
+# 先擴大levels
+levels(factor2) <- c(levels(factor2), "差")
+levels(factor2)
+
+factor2[[6]] <- "差"
+factor2
+
+#或是也可用以下方法
+levels(factor2)[[4]] <- "尚可"
+factor2[[7]] <- "尚可"
+factor2
+```
+
+
+**factor無法用c(...)把兩個factor vector串接在一起：**
+```{r}
+# non factor
+char1 <- c("小明","小美")
+char2 <- c("大雄","技安")
+c(char1, char2)
+
+# factor
+factor3 <- factor(c("好", "壞", "壞"))
+factor4 <- factor(c("壞", "好", "好"))
+c(factor3, factor4)
+```
+
+因為The output type is determined from the highest type of the components in the hierarchy NULL < raw < logical < integer < double < complex < character < list < expression. factor是integer type所以會被當integer後才串接在一起。
+
+正確接法：
+```{r}
+factor3[4:6] <- factor4    #元素創造-->創造原本不存在的第4項到第6項
+factor3
+```
+
+或使用套件forcats裡的fct_c函數
+```{r}
+forcats::fct_c(factor3, factor4)
+```
+
+
+# 4.7.5 綜合練習
+
+1. 將covid19$性別的levels名稱男、女改Male、Female
+
+
+2. 以下資料為新北市垃圾車路線
+```{r}
+jsonlite::fromJSON("https://data.ntpc.gov.tw/od/data/api/EDC3AD26-8AE7-4916-A00B-BC6048D19BF8?$format=json") -> garbageRoutes
+```
+
+(1.) 在garbageRoutes新增route元素，其元素值為對應garbageRoutes$linename裡粹取出的“XXX路線”字眼，如原本“A11路線(一、四)下午”的linename, 它的route值為“A11路線” 
+（garbageRoutes$route為factor class)
+
+(2.) 請設定garbageRoutes$route的levels依其路線停靠總站數由小排到大陳列
+
+(3.) linename的“路線”字眼後面接的是營運時間，如“A11路線(一、四)下午”的linename, 它的營運時間為“(一、四)下午”。若沒寫時間的路線，它的營運時間為“全天”。請在garbageRoutes新增time元素，其元素值為對應linename所隱含的營運時間。（garbageRoutes$time為factor class, levels會有“(一、四)下午”, “下午”, “下午(1.4版)”, “晚上”, 及“全天”）
+
+(4.) 將garbageRoutes$time的levels中的“下午(1.4版)”改成“下午”
+
+```{r}
+garbageRoutes$route <- factor(
+  str_extract(garbageRoutes$linename,"[:alnum:]+路線")
+  )
+
+new_levels <- names(sort(table(garbageRoutes$route)))
+levels(garbageRoutes$route) <- new_levels
+
+garbageRoutes$time <- 
+  str_extract(garbageRoutes$linename,"(?<=線)[:graph:]+")
+
+garbageRoutes$time[is.na(garbageRoutes$time)] <- "全天"
+garbageRoutes$time <- factor(garbageRoutes$time)                  
+
+levels(garbageRoutes$time)[[3]] <- "下午"
+```
+
+
+
