@@ -1,0 +1,1 @@
+"0","jsonlite::fromJSON(""https://data.ntpc.gov.tw/api/datasets/0EE4E6BF-CEE6-4EC8-8FE1-71F544015127/json/preview"", simplifyDataFrame = F) -> busRoutes"
