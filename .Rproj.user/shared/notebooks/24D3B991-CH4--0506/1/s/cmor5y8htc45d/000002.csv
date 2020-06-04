@@ -1,0 +1,21 @@
+"0","# 目標是前面的唧唧"
+"0","target_regex <- ""唧唧"""
+"0","pattern <- glue::glue(""^{target_regex}"")    # ^ 在開頭"
+"0","    # glue套件中的glue函數--> 取代 {} 裡的pattern物件"
+"0","    # 先確認Environment 裡的物件值是我們要的，再取代原本的pattern"
+"0",""
+"0","print(pattern)"
+"1","^唧唧"
+"1","
+"
+"0","str_view(phrase, pattern) "
+"2","Registered S3 methods overwritten by 'htmltools':
+  method               from         
+  print.html           tools:rstudio
+  print.shiny.tag      tools:rstudio
+  print.shiny.tag.list tools:rstudio
+"
+"2","Registered S3 method overwritten by 'htmlwidgets':
+  method           from         
+  print.htmlwidget tools:rstudio
+"

@@ -1,0 +1,25 @@
+"0","# 查詢函數主體
+body(askSilly_weather)
+"
+"1","{
+"
+"1","    weather_next36hours <- jsonlite::fromJSON(""https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/F-C0032-001?Authorization=rdec-key-123-45678-011121314&format=JSON"")
+"
+"1","    pick_location <- (weather_next36hours$cwbopendata$dataset$location$locationName == 
+"
+"1","        locationInput)
+"
+"1","    weatherAtLocation <- weather_next36hours$cwbopendata$dataset$location$weatherElement[pick_location][[1]]
+"
+"1","    pick_MaxT <- (weatherAtLocation$elementName == ""MaxT"")
+"
+"1","    pick_MinT <- (weatherAtLocation$elementName == ""MinT"")
+"
+"1","    maxT <- weatherAtLocation$time[pick_MaxT][[1]]$parameter$parameterName[[1]]
+"
+"1","    minT <- weatherAtLocation$time[pick_MinT][[1]]$parameter$parameterName[[1]]
+"
+"1","    glue::glue(""{locationInput} {dateInput} 氣溫，最高{maxT}度，最低{minT}度。"")
+"
+"1","}
+"

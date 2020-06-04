@@ -135,7 +135,7 @@ levels(covid19$`縣市`)
 ```
 
 
-EX：將covid19$縣市 依縣市目前個案數目由大排到小。（hint: 可使用table()來得到個案數統計, 它會自然產生named integer vector）
+#####*** EX：將covid19$縣市 依縣市目前個案數目由大排到小。（hint: 可使用table()來得到個案數統計, 它會自然產生named integer vector）
 ```{r}
 covid_num <- table(covid19$`縣市`)
 covid_num
@@ -151,7 +151,7 @@ levels(covid19$`縣市`)
 ```
 
 
-**年齡應該用年齡區間起始數字排序**
+####** 年齡應該用年齡區間起始數字排序**
 ```{r}
 levels(covid19$`年齡層`)    #電腦排序有誤，需自行更改
 ```
