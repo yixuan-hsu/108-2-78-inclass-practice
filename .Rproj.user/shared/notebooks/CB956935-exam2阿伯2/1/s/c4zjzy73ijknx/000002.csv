@@ -1,4 +1,0 @@
-"0","map(courseStructure$`應修系級`,~ stringr::str_detect(.x) & enter_year) -> pick_econ
-"
-"2","Error in type(pattern) : 缺少引數 ""pattern""，也沒有預設值
-"

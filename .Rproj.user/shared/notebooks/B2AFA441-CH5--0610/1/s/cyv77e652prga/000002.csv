@@ -1,0 +1,10 @@
+"0","D
+"
+"1","function (expr, name) 
+"
+"1",".External(C_doD, expr, name)
+"
+"1","<bytecode: 0x000001faa0fb5250>
+"
+"1","<environment: namespace:stats>
+"
