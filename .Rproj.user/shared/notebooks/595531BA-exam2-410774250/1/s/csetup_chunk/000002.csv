@@ -1,2 +1,29 @@
 "0","knitr::opts_chunk$set(echo = F, eval=F)"
 "0","library(jsonlite); library(lubridate); library(readr); library(stringr); library(purrr); library(magrittr)"
+"2","
+Attaching package: ．lubridate・
+
+"
+"2","The following objects are masked from ．package:base・:
+
+    date, intersect, setdiff, union
+
+"
+"2","
+Attaching package: ．purrr・
+
+"
+"2","The following object is masked from ．package:jsonlite・:
+
+    flatten
+
+"
+"2","
+Attaching package: ．magrittr・
+
+"
+"2","The following object is masked from ．package:purrr・:
+
+    set_names
+
+"

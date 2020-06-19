@@ -1,0 +1,6 @@
+"0","myAnswer <- c(2,3,6)"
+"0","correctAnswer <- c(2,3,5)"
+"0",""
+"0","if(all(myAnswer == correctAnswer)){    # all--要全TRUE才會被執行"
+"0","  print(""你答對了"")"
+"0","}"

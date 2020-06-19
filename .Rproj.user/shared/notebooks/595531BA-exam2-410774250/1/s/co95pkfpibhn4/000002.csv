@@ -1,0 +1,9 @@
+"0","data228 <- readr::read_csv(""https://www.dropbox.com/s/64yf3uq8wtvb5q7/%E4%BA%8C%E4%BA%8C%E5%85%AB%E4%BA%8B%E4%BB%B6%E4%BA%BA%E5%90%8D%E7%B4%A2%E5%BC%95.csv?dl=1"")"
+"2","Parsed with column specification:
+cols(
+  ÀÉ¸¹ = [31mcol_character()[39m,
+  ¥ş©v¦W = [31mcol_character()[39m,
+  ­Ó¤H¦WºÙ = [31mcol_character()[39m,
+  ªşµù = [31mcol_character()[39m
+)
+"

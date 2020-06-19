@@ -1,0 +1,19 @@
+"0","surface_cube <- function(L, W, H)"
+"0","  { surface_A <- 2.0 * (W * L + W * H + L * H)"
+"0","    return(surface_A)"
+"0","  }"
+"0",""
+"0","surface_cube(20, 10, 15)"
+"1","[1]"
+"1"," 1300"
+"1","
+"
+"0","surface_cube"
+"1","function(L, W, H)
+"
+"1","  { surface_A <- 2.0 * (W * L + W * H + L * H)
+"
+"1","    return(surface_A)
+"
+"1","  }
+"

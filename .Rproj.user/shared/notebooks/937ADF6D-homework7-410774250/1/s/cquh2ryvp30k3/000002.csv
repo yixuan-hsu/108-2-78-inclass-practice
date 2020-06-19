@@ -1,0 +1,19 @@
+"0","odd_or_even <- function(id)"
+"0","  { id_last <- as.integer(str_sub(id_1, 10, 10))"
+"0","    return(id_last %% 2)"
+"0","  }"
+"0",""
+"0","odd_or_even(Mask$`身分證字號`[[1]])"
+"1","[1]"
+"1"," 0"
+"1","
+"
+"0","odd_or_even"
+"1","function(id)
+"
+"1","  { id_last <- as.integer(str_sub(id_1, 10, 10))
+"
+"1","    return(id_last %% 2)
+"
+"1","  }
+"
