@@ -1,7 +1,0 @@
-"0","example$allowance <-"
-"0","  factor("
-"0","    example$allowance,"
-"0","    levels=c(""0-1000"", ""1001-2000"", ""2000+""),  "
-"0","      #若原本level的排序不是我們要的，可從這裡自行調整排序"
-"0","    ordered = T    #設定為可排序factor"
-"0","  )"

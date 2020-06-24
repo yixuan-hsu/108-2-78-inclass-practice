@@ -1,9 +1,0 @@
-"0","str_detect(fruit, ""^a"")  # 字元規律描述 regular expression
-"
-"1","[1]"
-"1","  TRUE"
-"1"," FALSE"
-"1"," FALSE"
-"1"," FALSE"
-"1","
-"

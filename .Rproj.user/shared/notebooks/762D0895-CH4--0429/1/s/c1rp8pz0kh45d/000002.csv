@@ -1,6 +1,0 @@
-"0","# 先將類別資料設定成可排序類別資料"
-"0","list_victimAges_female$`年齡層` <-"
-"0","  ordered(list_victimAges_female$`年齡層`)"
-"0",""
-"0","pick_above30 <- "
-"0","  list_victimAges_female$`年齡層` >= ""30_39歲"""

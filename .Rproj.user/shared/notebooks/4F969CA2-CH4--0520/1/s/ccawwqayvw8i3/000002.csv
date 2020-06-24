@@ -1,1 +1,0 @@
-"0","map(dance[[4]]$showInfo, ~ .x$time) -> list_showTimes_dance4"

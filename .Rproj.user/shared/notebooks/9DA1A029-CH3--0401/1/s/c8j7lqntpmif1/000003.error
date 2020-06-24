@@ -1,1 +1,0 @@
-{"frames":[{"character_number":0,"end_character_number":0,"end_line_number":0,"file":"","func":"toJSON(commit)","line_number":0},{"character_number":0,"end_character_number":0,"end_line_number":0,"file":"","func":"force(x)","line_number":0}],"message":"Error in force(x) : 找不到物件 'commit'\n"}

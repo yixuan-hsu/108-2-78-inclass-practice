@@ -1,5 +1,0 @@
-"0","list_victimAges_female$`數目` <-"
-"0","  as.integer(list_victimAges_female$`數目`)"
-"0",""
-"0","list_victimAges_female$`年齡層` <- "
-"0","  as.factor(list_victimAges_female$`年齡層`)"

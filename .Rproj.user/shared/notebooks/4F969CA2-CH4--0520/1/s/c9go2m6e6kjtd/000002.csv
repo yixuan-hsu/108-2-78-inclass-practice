@@ -1,3 +1,0 @@
-"0","map(dance, ~.x$title) -> list_titles"
-"0",""
-"0","View(list_titles)    # View() 等同於右上視窗中的放大鏡功能"

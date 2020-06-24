@@ -1,0 +1,304 @@
+---
+title: "CH3--0401"
+author: "YI XUAN HSU"
+date: "2020/4/6"
+output: html_document
+---
+
+## 3.6 List
+
+*EX：
+listObject <- list(value1, value2, value3)
+
+*特色：
+1.每個元素值可以是不同type的物件值
+```{r}
+# 用vector儲存
+c("2020-03-31T13:40:55Z",
+  "一芳",
+  "2",
+  "水果茶")
+
+
+# 用list儲存
+library(lubridate)
+
+`小明交易1` <- list(
+  ymd_hms("2020-03-31T13:40:55Z"),    # Date/Time class
+  "一芳",    # character
+  2,     # numeric
+  "水果茶"    # character
+)
+
+print(`小明交易1`)    # 與`小明交易1`同義 (顯示於彈出視窗)
+str(`小明交易1`)
+```
+
+2.物件值可以是vector形式，也可以list
+```{r}
+# 用vector
+c(
+  c("108-1","高級會計學","高等統計學"), #向量1
+  c("108-2","食在拉丁美洲") #向量2
+)
+```
+
+```{r}
+# 用list (含兩個vectors)
+`小明108學年課表A` <- 
+list(
+  c("108-1","高級會計學","高等統計學"), #向量1
+  c("108-2","食在拉丁美洲") #向量2
+)
+
+print(`小明108學年課表A`)
+str(`小明108學年課表A`)
+
+# 用list (含兩個lists)
+`小明108學年課表B` <- 
+list(
+  list("108-1","高級會計學","高等統計學"),
+  list("108-2","食在拉丁美洲")
+)
+
+print(`小明108學年課表B`)
+str(`小明108學年課表B`)
+
+# 用list (含兩個lists, 子層list又各含兩個vectors)
+`小明108學年課表C` <- 
+list(
+  list(
+    c("108-1"), # 可只寫 "108-1"
+    c("高級會計學","高等統計學")
+    ),
+  list(
+    c("108-2"),
+    c("食在拉丁美洲")
+    )
+)
+
+print(`小明108學年課表C`)
+str(`小明108學年課表C`)
+```
+
+3.物件值可以取名
+```{r}
+`小明108學年課表D` <- 
+list(
+  `上學期`=list(
+    semester=c("108-1"), # 可只寫 "108-1"
+    courses=c("高級會計學","高等統計學")
+    ),
+  `下學期`=list(
+    semester=c("108-2"),
+    courses=c("食在拉丁美洲")
+    )
+)
+
+print(`小明108學年課表D`)
+str(`小明108學年課表D`)
+```
+
+
+## Github Commit
+
+```{r}
+commit <- list(
+  author1 = c(
+    "Martin老師", 
+    "mtlin@gm.ntpu.edu.tw", 
+    "2020-03-25T07:17:40Z"),
+  author2 = list(
+    "Martin老師", 
+    "mtlin@gm.ntpu.edu.tw", 
+    ymd_hms("2020-03-25T07:17:40Z")
+    )
+  )
+
+print(commit)
+str(commit)
+```
+
+```{r}
+commit <- list(
+  author = list(
+    name ="Martin老師", 
+    email ="mtlin@gm.ntpu.edu.tw", 
+    time =ymd_hms("2020-03-25T07:17:40Z")
+  ),
+  committer = list(
+    name ="emilyluckey", 
+    email ="emily007@gmail.com", 
+    time =ymd_hms("2020-03-26T08:18:40Z")
+  ),
+  message = "update"
+)
+
+print(commit)
+str(commit)
+```
+
+```{r}
+library(lubridate)
+authorValues <- 
+  list(
+    name="Martin老師",  
+    email="mtlin@gm.ntpu.edu.tw",
+    time=ymd_hms("2020-03-25T07:17:40Z")
+  )
+
+committerValues <- 
+  list(
+    name="emilyluckey", 
+    email="emily007@gmail.com",
+    time=ymd_hms("2020-03-26T08:18:40Z")
+  )
+
+commit <- list(
+  author=authorValues,
+  commmitter=committerValues,
+  message="update"
+)
+
+print(commit)
+str(commit)
+```
+
+
+```{r}
+browseURL("https://api.github.com/repos/tpemartin/108-2-56-inclass-practice/commits") 
+```
+
+```{r}
+library(jsonlite) # 不少同學這行會有Error，還記得如何排除嗎？
+toJSON(commit)
+```
+
+```{r}
+# 108-1 
+course1_1081 <- 
+  list(
+    name="個體經濟學",
+    teacher="Alice",
+    grade=85
+  )
+course2_1081 <-
+  list(
+    name="總體經濟學",
+    teacher="Mark",
+    grade=78
+  )
+`108-1修課記錄` <- 
+  list(
+    course1_1081,
+    course2_1081
+  )
+
+# 108-2
+course1_1082 <- 
+  list(
+    name="作業研究",
+    teacher="Jason",
+    grade=90
+  )
+`108-2修課記錄` <- 
+  list(
+    course1_1082
+  )
+
+# 整合兩學期
+`每學期修課記錄` <- list(
+  `108-1`=`108-1修課記錄`,
+  `108-2`=`108-2修課記錄`
+)
+
+# 完成記錄
+`小明的修課記錄` <- 
+  list(
+    name="小明",
+    semesters=`每學期修課記錄`
+  )
+```
+
+```{r}
+`小明的修課記錄` <- list(     #只有最一開始的list 使用 <-
+  name="小明",
+  semesters=list(
+    `108-1`=list(
+      year=108,
+      semester=1,
+      courses=list(
+        list(
+          name="個體經濟學",
+          teacher="Alice",
+          grade=85
+          ),
+        list(
+          name="總體經濟學",
+          teacher="Mark",
+          grade=78
+          )
+        )
+      ),
+    `108-2`=list(
+      year=108,
+      semester=2,
+      courses=list(
+        list(
+          name="作業研究",
+          teacher="Jason",
+          grade=90
+          )
+        )
+      )
+    )
+  )
+
+str(`小明的修課記錄`)
+```
+
+```{r}
+#氣象預報
+weather_taipei<-
+  list(
+    date=list("2020-03-31","2020-04-01"),
+    city="台北市",
+    temp_highest=25,
+    temp_lowest=18
+  )
+
+weather_newtaipei<-
+  list(
+    date=list("2020-03-31","2020-04-01"),
+    city="新北市",
+    temp_highest=24,
+    temp_lowest=15
+  )
+weather<-list(weather_taipei,weather_newtaipei)
+print(weather)
+```
+
+```{r}
+library(jsonlite)
+fromJSON("https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/F-C0032-001?Authorization=rdec-key-123-45678-011121314&format=JSON") ->
+  weather_next36hours
+```
+
+
+## 物件儲存
+
+```{r}
+#Example:
+
+save(object1, object2, ..., file="myData.Rda")
+```
+
+```{r}
+load("myData.Rda")
+```
+
+
+
+
+
+
