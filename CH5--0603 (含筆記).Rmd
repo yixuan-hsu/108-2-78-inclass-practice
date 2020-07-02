@@ -48,9 +48,10 @@ qd
 demand    #這個function的定義
 ```
 
+計算這個function的值，**但並不會顯示在視窗上**
 ```{r}
 # p=1.2的需求量，同 demand(p=1.2)
-demand(1.2)    #計算這個function的值，但並不會顯示在視窗上
+demand(1.2)    
 
 # p=1.3的需求量
 demand(1.3)
@@ -59,7 +60,7 @@ demand(1.3)
 demand(1.4)
 ```
 
-return  **將function計算出來的值顯示在視窗上
+**return => 將function計算出來的值顯示在視窗上**
 ```{r}
 demand_return <- 
   function(p){
@@ -71,8 +72,8 @@ demand_return(1.2)
 ```
 
 ```{r}
-demand(1.2)
-demand_return(1.2)
+demand(1.2)          #不會印在下方視窗
+demand_return(1.2)   #  會印在下方視窗
 ```
 
 最近一步會使用到電腦記憶體的運算值會暫時記在：
@@ -231,7 +232,8 @@ learning_topics <-
 
 可以從物件learning_topics 找到demand 的function了
 ```{r}
-learning_topics$functionsCreated$demand(1.2)
+learning_topics$functionsCreated$demand     #顯示完整的function 結構
+learning_topics$functionsCreated$demand(1.2)#直接顯示此function 答案
 ```
 
 => 其實幾乎所有的物件不管什麼class都可以存在list裡

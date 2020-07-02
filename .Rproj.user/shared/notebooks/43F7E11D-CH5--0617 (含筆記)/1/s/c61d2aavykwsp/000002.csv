@@ -1,0 +1,13 @@
+"0","if(myAnswer == correctAnswer){    #多個T/F
+                                  #只取用第一個T/F，後面不管他
+     #情境判斷的condition只能回覆一個T/F值，不然判斷可能會出錯
+     #因此，可以藉由all/any 來變化
+  
+  print(""你答對了"")
+}
+"
+"2","the condition has length > 1 and only the first element will be used"
+"1","[1]"
+"1"," ""你答對了"""
+"1","
+"

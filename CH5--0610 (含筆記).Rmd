@@ -146,7 +146,6 @@ convert_TaiwanDate2WesternDate <- function(twDate){
     install.packages("lubridate")
   }
   
-  library(stringr)
   regex_pattern <-
     "(?<=民國)[0-9]+(?=年)"
   
@@ -174,8 +173,21 @@ convert_TaiwanDate2WesternDate <- function(twDate){
 
 ```{r}
 # 測試
+check_package <- function(pkgName){
+  if(!require(pkgName)){
+    install.packages(pkgName)
+  }
+  return(pkgName)
+}
+
+class(check_package)
+length(check_package)
+
 check_package("clipr")
 check_package("SOAR")
+
+class("clipr")
+length("clipr")
 ```
 
 
@@ -183,6 +195,13 @@ check_package("SOAR")
 
 ```{r}
 # 測試
+check_packages <- function(pkgNames){
+  if(!require(pkgNames)){
+    install.packages(pkgNames)
+  }
+  return(pkgNames)
+}
+
 check_packages(c("clipr","SOAR"))
 ```
 

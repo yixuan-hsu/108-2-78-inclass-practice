@@ -78,7 +78,7 @@ w %>%
   h(.) -> z
 ```
 
---> %>% 把左邊產生的output，接過去成為下一段函數的input
+##### --> **%>% 把左邊產生的output，接過去成為下一段函數的input**
 
 
 EX：
@@ -213,8 +213,11 @@ population %>%
 
 會有誤源自於
 ```{r}
-population %>% names(sort(.))  #疊代函數不能直接用串接的方式需分開寫
+population %>% names(sort(.))  
 ```
+##### ***疊代函數不能直接用串接的方式需分開寫***
+      ***疊代函數不能存在於某部分 %>% 的右邊區塊***
+
 
 %>% 是把population放到names()的input裡，而非sort()，但names()的input位置已被sort佔走。要改成
 ```{r}
@@ -241,8 +244,12 @@ dataList <- list(
 
 ```{r}
 library(purrr)
-is.numeric(dataList[[1]])
-is.numeric(dataList[[2]])    #對*每個元素*進行相同運算
+is.numeric(dataList[[1]])  # is.numeric=>所選值的class 是否為numeric
+is.numeric(dataList[[2]])  # 出來的結果為logical 向量
+                           #對*每個元素*進行相同運算
+#等同於
+class(dataList[[1]]) == "numeric"
+class(dataList[[2]]) == "numeric"
 
 # 運用map可改成
 map(dataList, ~ is.numeric(.x)) -> results

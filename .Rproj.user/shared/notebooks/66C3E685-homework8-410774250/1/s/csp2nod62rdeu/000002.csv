@@ -1,0 +1,17 @@
+"0","assign_seats <- function(people, seatingChart)"
+"0","{"
+"0","   seat_list <- list_availableSeats(seatingChart)"
+"0","   seats <- sample(1:length(seat_list), length(people), replace=FALSE)"
+"0","   seat_vector <- c()"
+"0","   for (i in seats)"
+"0","   {"
+"0","     seat_vector <- c(seat_vector, seat_list[i])"
+"0","     seatingChart <- update_seatingChart(seatingChart, seat_list[i])"
+"0","   }"
+"0","   names(seat_vector) <- people"
+"0","   return(seat_vector) "
+"0","}"
+"0","assign_seats(animal15, seatingChart)"
+"2","Error in sample.int(length(x), size, replace, prob) : 
+  object 'animal15' not found
+"

@@ -1,0 +1,4 @@
+"0","   seat_list <- list_availableSeats(chart)
+"
+"2","Error in .f(.x[[i]], ...) : 找不到物件 'chart'
+"

@@ -1,0 +1,9 @@
+"0","read_csv(""https://www.dropbox.com/s/8mlf6cory32q1eq/bear.csv?dl=1"") ->"
+"0","  bear"
+"2","Parsed with column specification:
+cols(
+  `³J¿|(Q1)` = [32mcol_double()[39m,
+  `²¢²¢°é(Q2)` = [32mcol_double()[39m,
+  `Total Utility` = [32mcol_double()[39m
+)
+"

@@ -1,0 +1,5 @@
+"0","nowtime <- glue::glue(""{today()} 18:00:00"") %>% ymd_hms(tz=""Asia/Taipei"")
+"
+"2","Error in glue::glue(""{today()} 18:00:00"") %>% ymd_hms(tz = ""Asia/Taipei"") : 
+  沒有這個函數 ""%>%""
+"

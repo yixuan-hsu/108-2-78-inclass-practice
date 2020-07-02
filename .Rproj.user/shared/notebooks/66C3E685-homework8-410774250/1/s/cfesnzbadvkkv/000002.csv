@@ -1,0 +1,16 @@
+"0","no_found
+"
+"1","function(key_word){
+"
+"1","  T_F <- ifelse(str_detect(ntpc_building_info$name,key_word),1,0)
+"
+"1","  
+"
+"1","  if(sum(T_F) == 0){
+"
+"1","    warning(""No Found"")
+"
+"1","  } 
+"
+"1","  }
+"

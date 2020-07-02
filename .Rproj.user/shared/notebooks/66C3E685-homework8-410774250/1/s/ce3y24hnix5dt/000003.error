@@ -1,0 +1,1 @@
+{"frames":[{"character_number":0,"end_character_number":0,"end_line_number":0,"file":"","func":"assign_seats(animal15, seatingChart)","line_number":0}],"message":"Error in update_seatingChart(seatingChart, seat_list[i]) : \n  could not find function \"update_seatingChart\"\n"}

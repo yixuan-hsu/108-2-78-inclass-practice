@@ -1,0 +1,8 @@
+"0","myFun <- function(n) {"
+"0","    if (as.logical(n%%2)) {"
+"0","        fvalue <- -(n + 1)/2"
+"0","    } else {"
+"0","        fvalue <- n/2"
+"0","    }"
+"0","    return(fvalue)"
+"0","}"

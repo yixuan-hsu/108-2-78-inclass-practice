@@ -1,0 +1,5 @@
+"0","# way2"
+"0","pick_park <- str_detect(ntpc_building_info$name,""停車場"")"
+"0","ntpc_building_info[pick_park,] -> ntpc_building_parking"
+"0",""
+"0","ntpc_building_parking"
